@@ -18,7 +18,7 @@
           <!-- ng-template only visible whe-->
           <ng-template #anonymousUser>
             <li class="nav-item">
-              <a class="nav-link" routerLink="/login" *ngIf="!(user$ | async)">Log in</a>
+              <a class="nav-link" routerLink="/login" *ngIf="!(auth.user$ | async)">Log in</a>
             </li>
           </ng-template>
 
@@ -26,7 +26,7 @@
           <!-- below part works like if there is a user. (user$ is a observable. we can unwarap it using
             async. if there is no user then visible ng-template with #anonymouse variable and remove name )
             )-->
-          <li ngbDropdown class="nav-item dropdown" *ngIf="user$  | async as user; else anonymousUser">
+          <li ngbDropdown class="nav-item dropdown" *ngIf="auth.user$  | async as user; else anonymousUser">
             <a ngbDropdownToggle class="nav-link dropdown-toggle" id="dropdown03" data-bs-toggle="dropdown" aria-expanded="false">
               {{user.displayName}}  <!--'user' comming from unwrapping user$ observable-->
             </a>

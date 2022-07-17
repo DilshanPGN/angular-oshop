@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { Observable } from 'rxjs';
+import { Component } from '@angular/core';
+import { AuthService } from '../sevice/auth.service';
 
 
 
@@ -12,16 +11,12 @@ import { Observable } from 'rxjs';
 export class BsNavbarComponent  {
   
 
-  user$ : Observable<firebase.default.User | null> ; //logged user
-
-  constructor(private afAuth:AngularFireAuth) { 
-    this.user$ = afAuth.authState ;  
-    //we are going to unwrap this obervable in our template using Async Pipe. 
-    //this pipe will automaticaly unsubscribe this obervable ehen component is destroyed.
-  }
+  constructor(public auth: AuthService) { 
+    
+   }
 
   logout(){
-    this.afAuth.signOut();
+    this.auth.logout();
   }
   
 }
