@@ -14,22 +14,22 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" routerLink="/login">Log in</a>
+            <a class="nav-link" routerLink="/login" *ngIf="!user">Log in</a>
           </li>
           
 
           
-          <li ngbDropdown class="nav-item dropdown">
-            <a ngbDropdownToggle class="nav-link dropdown-toggle" id="dropdown03" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
+          <li ngbDropdown class="nav-item dropdown" *ngIf="user">
+            <a ngbDropdownToggle class="nav-link dropdown-toggle" id="dropdown03" data-bs-toggle="dropdown" aria-expanded="false">{{user.displayName}}</a>
             <ul ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown03">
               <li><a class="dropdown-item" routerLink="/my/orders">My Orders</a></li>
               <li><a class="dropdown-item" routerLink="/admin/orders">Manage Orders</a></li>
               <li><a class="dropdown-item" routerLink="/admin/products">Manage Products</a></li>              
-              <li><a class="dropdown-item">Log out</a></li>
+              <li><a class="dropdown-item" (click)="logout()">Log out</a></li>
             </ul>
           </li>
         </ul>
-        <form>
+        <form> 
           <input class="form-control" type="text" placeholder="Search" aria-label="Search">
         </form>
       </div>
