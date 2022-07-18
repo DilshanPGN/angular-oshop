@@ -19,7 +19,7 @@ export class AuthGuardService  implements CanActivate{
 
         if(user) return true;
 
-        this.router.navigate(['/login']);
+        this.router.navigate(['/login'] , {queryParams :{ returnUrl: state.url}});  //if anonymous user try to type and go admin url , then go to log in and add quer params as  return url to targeted page
         return false;
 
       })
