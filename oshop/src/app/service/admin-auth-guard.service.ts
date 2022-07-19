@@ -13,22 +13,14 @@ export class AdminAuthGuardService implements CanActivate{
 
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-    return this.auth.user$.pipe(
-      
-      switchMap(user => this.userService.get(user?.uid).valueChanges() ),
-
-      // /this.userService.get(user?.uid)
-
+    return this.auth.appUsers$.pipe(
       map(appuser => {
         if(appuser?.isAdmin==true){
           return true;
         }else{
           return false;
         }
-      }
-        )
-      
-
+      })
     );
   }
 
