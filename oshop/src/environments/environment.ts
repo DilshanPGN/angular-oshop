@@ -11,7 +11,9 @@ export const environment = {
     storageBucket: "oshop-2fada.appspot.com",
     messagingSenderId: "656891017662",
     appId: "1:656891017662:web:62ba31bfd5e633cf3e21ef",
-    measurementId: "G-XLRFZMNFLY"
+    measurementId: "G-XLRFZMNFLY",
+    databaseURL: "https://oshop-2fada-default-rtdb.asia-southeast1.firebasedatabase.app/"
+  
   }
 };
 
