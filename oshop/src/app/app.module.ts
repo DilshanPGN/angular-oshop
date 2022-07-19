@@ -21,6 +21,7 @@ import { LoginComponent } from './login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from './service/auth.service';
 import { AuthGuardService as AuthGuard } from './service/auth-guard.service';
+import { UserService } from './service/user.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { AuthGuardService as AuthGuard } from './service/auth-guard.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireModule.initializeApp(environment.firebase ),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     RouterModule.forRoot([
@@ -59,7 +60,7 @@ import { AuthGuardService as AuthGuard } from './service/auth-guard.service';
     NgbModule
     
   ],
-  providers: [AuthService, AuthGuard],
+  providers: [AuthService, AuthGuard , UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
