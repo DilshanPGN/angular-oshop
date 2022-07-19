@@ -22,6 +22,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from './service/auth.service';
 import { AuthGuardService as AuthGuard } from './service/auth-guard.service';
 import { UserService } from './service/user.service';
+import { AdminAuthGuardService as AdminAuthGuard } from './service/admin-auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -54,13 +55,13 @@ import { UserService } from './service/user.service';
       {path: 'order-success' , component: OrderSuccessComponent, canActivate:[AuthGuard]},
       {path: 'my/orders' , component: MyOrdersComponent, canActivate:[AuthGuard]},
 
-      {path: 'admin/products' , component: AdminProductsComponent, canActivate:[AuthGuard]},
-      {path: 'admin/orders' , component: AdminOrdersComponent, canActivate:[AuthGuard]}
+      {path: 'admin/products' , component: AdminProductsComponent, canActivate:[AuthGuard , AdminAuthGuard]},
+      {path: 'admin/orders' , component: AdminOrdersComponent, canActivate:[AuthGuard , AdminAuthGuard]}
     ]),
     NgbModule
     
   ],
-  providers: [AuthService, AuthGuard , UserService],
+  providers: [AuthService, AuthGuard , UserService , AdminAuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
