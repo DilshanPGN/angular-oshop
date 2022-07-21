@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { CategoryService } from 'src/app/service/category.service';
 import { ProductService } from 'src/app/service/product.service';
@@ -13,8 +14,12 @@ export class ProductFormComponent implements OnInit {
   categories$ : Observable<any>;
   //we can unwarap this in html template using Async
 
-  constructor(categoryService : CategoryService , private productService: ProductService) {
-    this.categories$ = categoryService.getCategories().valueChanges();
+  constructor(
+    private categoryService : CategoryService , 
+    private productService: ProductService,
+    private router: Router
+    ) {
+      this.categories$ = categoryService.getCategories().valueChanges();
    }
 
   ngOnInit(): void {
@@ -22,6 +27,7 @@ export class ProductFormComponent implements OnInit {
 
   save(product: any){
     this.productService.create(product);
+    this.router.navigate(['/admin/products'])
   }
 
 }
