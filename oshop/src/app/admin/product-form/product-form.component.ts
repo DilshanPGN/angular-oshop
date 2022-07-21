@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { CategoryService } from 'src/app/service/category.service';
 
 @Component({
   selector: 'app-product-form',
@@ -7,7 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductFormComponent implements OnInit {
 
-  constructor() { }
+  categories$ : Observable<any>;
+  //we can unwarap this in html template using Async
+
+  constructor(categoryService : CategoryService) {
+    this.categories$ = categoryService.getCategories().valueChanges();
+   }
 
   ngOnInit(): void {
   }

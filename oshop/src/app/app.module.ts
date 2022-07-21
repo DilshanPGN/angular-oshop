@@ -24,6 +24,7 @@ import { AuthGuardService as AuthGuard } from './service/auth-guard.service';
 import { UserService } from './service/user.service';
 import { AdminAuthGuardService as AdminAuthGuard } from './service/admin-auth-guard.service';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
+import { CategoryService } from './service/category.service';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,7 @@ import { ProductFormComponent } from './admin/product-form/product-form.componen
     NgbModule
     
   ],
-  providers: [AuthService, AuthGuard , UserService , AdminAuthGuard],
+  providers: [AuthService, AuthGuard , UserService , AdminAuthGuard , CategoryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
