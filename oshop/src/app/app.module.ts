@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import {AngularFireModule} from '@angular/fire/compat';
 import { AngularFireAuthModule } from "@angular/fire/compat/auth";
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
-
+import { CustomFormsModule } from 'ng2-validation';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from 'src/environments/environment';
@@ -50,6 +50,7 @@ import { ProductService } from './service/product.service';
     AngularFireModule.initializeApp(environment.firebase ),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
+    CustomFormsModule ,
     RouterModule.forRoot([
       {path: '' , component: HomeComponent},
       

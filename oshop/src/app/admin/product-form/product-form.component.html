@@ -23,13 +23,15 @@
                   <span class="input-group-text">$</span>
                 </div>
                 
-                <input ngModel name="price" id ="price" type="number" class="form-control" #price="ngModel" required> 
+                <input ngModel name="price" id ="price" type="number" class="form-control" #price="ngModel" required [min]="0"> 
             </div>
 
             <!-- Error Messege-->
             <div class="alert alert-danger" *ngIf="price.touched && price.invalid">
-                Price is required
+                <div *ngIf="price.errors?.['required']" > Price is rquired </div>
+                <div *ngIf="price.errors?.['min']" > Price should be 0 or higher </div>
             </div>
+
         </div>
     
     
@@ -50,11 +52,15 @@
     
         <div class="form-group">
             <label for="imageURL"> Image URL</label>
-            <input ngModel name="imageURL" id ="imageURL" class ="form-control" type="text" #imageURL="ngModel" required>
+            <input ngModel name="imageURL" id ="imageURL" class ="form-control" type="text" #imageURL="ngModel" required url>
             
             <!-- Error Messege-->
+            <!-- npm install ng2-validation --save -->
+
             <div class="alert alert-danger" *ngIf="imageURL.touched && imageURL.invalid">
-                ImageURL is required
+                
+                <div *ngIf="imageURL.errors?.['required']"> ImageURL is required </div>
+                <div *ngIf="imageURL.errors?.['url']"> Please enter a valid url </div>
             </div>
         
         </div>
