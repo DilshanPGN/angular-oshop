@@ -18,4 +18,9 @@ export class ProductService {
   getAll(){
     return this.db.list('/products');
   }
+
+  
+  get(productId: string){
+    return this.db.object('/products/'+ productId);
+  }
 }
