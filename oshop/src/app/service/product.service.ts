@@ -14,6 +14,12 @@ export class ProductService {
 
   }
 
+  update(productId:string , product:any){
+
+    return this.db.object('/products/'+ productId).update(product);
+
+  }
+
 
   getAll(){
     return this.db.list('/products');

@@ -21,6 +21,8 @@ export class ProductFormComponent implements OnInit {
 
   product: any = {}; // for edit
 
+  id:string|null;
+
   constructor(
     private categoryService : CategoryService , 
     private route: ActivatedRoute, //we can read route parameters
@@ -29,20 +31,24 @@ export class ProductFormComponent implements OnInit {
     ) {
       this.categories$ = categoryService.getCategories().valueChanges();
 
-      let id = this.route.snapshot.paramMap.get('id'); //geting id from route url
+      this.id = this.route.snapshot.paramMap.get('id'); //geting id from route url
 
 
       /* take - we can get only one value from observable and that observable
       will automatically complete */
-      if(id) this.productService.get(id).valueChanges().pipe(take(1)).subscribe(p=> this.product = p);
+      if(this.id) this.productService.get(this.id).valueChanges().pipe(take(1)).subscribe(p=> this.product = p);
    }
 
   ngOnInit(): void {
   }
 
   save(product: any){
-    this.productService.create(product);
-    this.router.navigate(['/admin/products'])
+
+    if (this.id) this.productService.update(this.id , product);
+    else this.productService.create(product);
+
+    
+    this.router.navigate(['/admin/products']);
   }
 
 
