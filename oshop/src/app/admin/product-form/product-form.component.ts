@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { tick } from '@angular/core/testing';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, take } from 'rxjs';
 import { CategoryService } from 'src/app/service/category.service';
@@ -49,6 +48,18 @@ export class ProductFormComponent implements OnInit {
 
     
     this.router.navigate(['/admin/products']);
+  }
+
+  delete(){
+    if(this.id){
+      if(confirm('Are you sure want to delet this product ?')){
+        this.productService.delete(this.id);
+        this.router.navigate(['/admin/products']);
+      }
+    }else{
+      console.log("ID not found")
+    }
+    
   }
 
 

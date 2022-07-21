@@ -20,6 +20,12 @@ export class ProductService {
 
   }
 
+  delete(productId:string){
+
+    return this.db.object('/products/'+ productId).remove();
+
+  }
+
 
   getAll(){
     return this.db.list('/products');
