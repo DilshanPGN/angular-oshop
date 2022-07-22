@@ -55,16 +55,16 @@
                 </div>
             
                 <div class="form-group">
-                    <label for="imageURL"> Image URL</label>
-                    <input  [(ngModel)]="product.imageURL" name="imageURL" id ="imageURL" class ="form-control" type="text" #imageURL="ngModel" required url>
+                    <label for="imageUrl"> Image Url</label>
+                    <input  [(ngModel)]="product.imageUrl" name="imageUrl" id ="imageUrl" class ="form-control" type="text" #imageUrl="ngModel" required url>
                     
                     <!-- Error Messege-->
                     <!-- npm install ng2-validation --save -->
         
-                    <div class="alert alert-danger" *ngIf="imageURL.touched && imageURL.invalid">
+                    <div class="alert alert-danger" *ngIf="imageUrl.touched && imageUrl.invalid">
                         
-                        <div *ngIf="imageURL.errors?.['required']"> ImageURL is required </div>
-                        <div *ngIf="imageURL.errors?.['url']"> Please enter a valid url </div>
+                        <div *ngIf="imageUrl.errors?.['required']"> ImageURL is required </div>
+                        <div *ngIf="imageUrl.errors?.['url']"> Please enter a valid url </div>
                     </div>
                 
                 </div>
@@ -80,7 +80,7 @@
     <!--Second Comumn-->
     <div class="col-md-6">
         <div class="card" style="width: 18rem;">
-            <img class="card-img-top" [src]="product.imageURL" *ngIf="product.imageURL">
+            <img class="card-img-top" [src]="product.imageUrl" *ngIf="product.imageUrl">
             <div class="card-body">
               <h5 class="card-title">{{product.title}}</h5>
               <p class="card-text"> {{product.price | currency: 'USD': 'symbol'}} </p>
