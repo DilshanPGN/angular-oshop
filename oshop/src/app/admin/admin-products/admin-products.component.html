@@ -5,6 +5,12 @@
     </a>
 </p>
 
+<p>
+    <input 
+    (keyup)="filter(query.value)" #query
+    type="text" class="form-control" placeholder="Search..">
+</p>
+
 <table class="table">
     <thead>
         <tr>

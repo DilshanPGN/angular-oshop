@@ -22,4 +22,8 @@ export class AdminProductsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  filter(query : string){
+    console.log(query);
+  }
+
 }
