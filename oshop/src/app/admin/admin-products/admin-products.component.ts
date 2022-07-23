@@ -7,6 +7,7 @@ import { ProductService } from 'src/app/service/product.service';
   templateUrl: './admin-products.component.html',
   styleUrls: ['./admin-products.component.css']
 })
+
 export class AdminProductsComponent implements OnInit, OnDestroy {
 
   products$: Observable<any> ;
@@ -16,20 +17,22 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   products: any[] =[]; //save products array after subscribing
   filteredProducts: any[] =[]; 
 
+  displayedColumns: string[] = ['title', 'price', 'edit'];
+  
+
   constructor(private productService : ProductService) {
     this.products$ = this.productService.getAll().snapshotChanges();
 
-    //print objects
+   
 
     this.subscription  =this.products$.subscribe(prod =>{
       this.products= this.filteredProducts = prod;
     } );
 
-    //this.productService.getAll().snapshotChanges().subscribe(prod => this.products = prod);
-    
    }
 
   ngOnInit(): void {
+    
   }
 
   ngOnDestroy(): void {
@@ -37,7 +40,6 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   }
 
   filter(query : string){
-    //console.log(query);
 
     this.filteredProducts = (query) ?    //if querry exist
       this.products.filter(p => p.payload.val().title.toLowerCase().includes(query.toLowerCase())) :  //else

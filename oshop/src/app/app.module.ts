@@ -27,6 +27,8 @@ import { ProductFormComponent } from './admin/product-form/product-form.componen
 import { CategoryService } from './service/category.service';
 import { FormsModule } from '@angular/forms';
 import { ProductService } from './service/product.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,7 @@ import { ProductService } from './service/product.service';
   ],
   imports: [
     BrowserModule,
+    MatTableModule,
     FormsModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase ),
@@ -69,7 +72,8 @@ import { ProductService } from './service/product.service';
       {path: 'admin/products' , component: AdminProductsComponent, canActivate:[AuthGuard , AdminAuthGuard]},
       {path: 'admin/orders' , component: AdminOrdersComponent, canActivate:[AuthGuard , AdminAuthGuard]}
     ]),
-    NgbModule
+    NgbModule,
+    BrowserAnimationsModule
     
   ],
   providers: [AuthService, AuthGuard , UserService , AdminAuthGuard , CategoryService , ProductService],
