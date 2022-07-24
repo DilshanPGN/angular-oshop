@@ -50,6 +50,8 @@ export class ProductService {
             key : key,
             title: val.title ,
             price: val.price , 
+            category: val.category,
+            
             imageUrl: val.imageUrl
           };
       });
