@@ -15,14 +15,16 @@ export class AppComponent  {
     //whenever user signIn
     auth.user$.subscribe(user =>{
 
-      //if user exist rederect to return url
-      if(user){
-        
-        userService.save(user);
-        let returnUrl = localStorage.getItem('returnUrl') || "/";
-        router.navigateByUrl(returnUrl);
-      }
+      
+      if(!user) return; 
 
+      userService.save(user);
+      let returnUrl = localStorage.getItem('returnUrl');
+      if(!returnUrl) return;
+        
+      localStorage.removeItem('returnUrl');
+      router.navigateByUrl(returnUrl);  
+    
     })
 
   }

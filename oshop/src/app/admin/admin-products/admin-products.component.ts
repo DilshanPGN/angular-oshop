@@ -1,6 +1,16 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { Subscription } from 'rxjs';
 import { ProductService } from 'src/app/service/product.service';
+
+export interface PeriodicElement {
+  price: string;
+  title: number;
+  edit: number;
+}
+
 
 @Component({
   selector: 'app-admin-products',
@@ -8,42 +18,48 @@ import { ProductService } from 'src/app/service/product.service';
   styleUrls: ['./admin-products.component.css']
 })
 
-export class AdminProductsComponent implements OnInit, OnDestroy {
 
-  products$: Observable<any> ;
+
+export class AdminProductsComponent implements AfterViewInit, OnDestroy {
+
 
   subscription : Subscription;
 
   products: any[] =[]; //save products array after subscribing
-  filteredProducts: any[] =[]; 
 
   displayedColumns: string[] = ['title', 'price', 'edit'];
+
+  dataSource = new MatTableDataSource<any>(this.products);
   
+  
+  @ViewChild(MatPaginator)
+  paginator!: MatPaginator;
 
-  constructor(private productService : ProductService) {
-    this.products$ = this.productService.getAll().snapshotChanges();
+  @ViewChild(MatSort)
+  sort!: MatSort;
 
-   
+  constructor(private productService : ProductService ) {
 
-    this.subscription  =this.products$.subscribe(prod =>{
-      this.products= this.filteredProducts = prod;
-    } );
+    this.subscription =productService.getAll().subscribe(res=>{
+      this.products= res;
+      this.dataSource.data = this.products;
+    })
 
    }
 
-  ngOnInit(): void {
+   ngAfterViewInit(): void {
     
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+
   }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 
-  filter(query : string){
-
-    this.filteredProducts = (query) ?    //if querry exist
-      this.products.filter(p => p.payload.val().title.toLowerCase().includes(query.toLowerCase())) :  //else
-      this.products;
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
 }
