@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import {AngularFireModule} from '@angular/fire/compat';
 import { AngularFireAuthModule } from "@angular/fire/compat/auth";
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
-
+import { CustomFormsModule } from 'ng2-validation';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from 'src/environments/environment';
@@ -23,6 +23,16 @@ import { AuthService } from './service/auth.service';
 import { AuthGuardService as AuthGuard } from './service/auth-guard.service';
 import { UserService } from './service/user.service';
 import { AdminAuthGuardService as AdminAuthGuard } from './service/admin-auth-guard.service';
+import { ProductFormComponent } from './admin/product-form/product-form.component';
+import { CategoryService } from './service/category.service';
+import { FormsModule } from '@angular/forms';
+import { ProductService } from './service/product.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatTableModule} from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -36,32 +46,51 @@ import { AdminAuthGuardService as AdminAuthGuard } from './service/admin-auth-gu
     MyOrdersComponent,
     AdminProductsComponent,
     AdminOrdersComponent,
-    LoginComponent
+    LoginComponent,
+    ProductFormComponent
   ],
   imports: [
     BrowserModule,
+    MatTableModule,
+
+    //testing
+    MatFormFieldModule,
+    MatInputModule,
+    
+    
+
+
+    MatSortModule,
+    MatPaginatorModule,
+    FormsModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase ),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
+    CustomFormsModule ,
     RouterModule.forRoot([
       {path: '' , component: HomeComponent},
+      
       {path: 'products' , component: ProductsComponent},
       {path: 'shopping-cart' , component: ShoppingCartComponent},
       {path: 'login' , component: LoginComponent},
 
+      //  /admin/products/
 
       {path: 'check-out' , component: CheckOutComponent , canActivate:[AuthGuard]},
       {path: 'order-success' , component: OrderSuccessComponent, canActivate:[AuthGuard]},
       {path: 'my/orders' , component: MyOrdersComponent, canActivate:[AuthGuard]},
 
+      {path: 'admin/products/new' , component: ProductFormComponent, canActivate:[AuthGuard , AdminAuthGuard]},
+      {path: 'admin/products/:id' , component: ProductFormComponent, canActivate:[AuthGuard , AdminAuthGuard]},
       {path: 'admin/products' , component: AdminProductsComponent, canActivate:[AuthGuard , AdminAuthGuard]},
       {path: 'admin/orders' , component: AdminOrdersComponent, canActivate:[AuthGuard , AdminAuthGuard]}
     ]),
-    NgbModule
+    NgbModule,
+    BrowserAnimationsModule
     
   ],
-  providers: [AuthService, AuthGuard , UserService , AdminAuthGuard],
+  providers: [AuthService, AuthGuard , UserService , AdminAuthGuard , CategoryService , ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
