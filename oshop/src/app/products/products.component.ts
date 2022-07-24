@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { CategoryService } from '../service/category.service';
 import { ProductService } from '../service/product.service';
 
 @Component({
@@ -10,12 +11,14 @@ import { ProductService } from '../service/product.service';
 export class ProductsComponent implements OnInit {
 
   products$ : Observable<any>;
+  categories$ : Observable<any>;
 
-  constructor(private productService: ProductService) {
+  constructor(private productService: ProductService , private categoryService: CategoryService ) {
     
     this.products$ = productService.getAll();
+    this.categories$ = categoryService.getCategories().valueChanges();
 
-    this.products$.subscribe(res=> console.log(res));
+    
    }
 
   ngOnInit(): void {
