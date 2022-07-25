@@ -2,27 +2,9 @@
 
   <!-- Category Side-->
   <div class="col-3">
-    <div class="list-group">
-
-      <a class="list-group-item list-group-item-action"
-      [class.active]="!category"
-      routerLink="/"
-      >
-        All Categoryies
-      </a>
-
-
-      <a 
-        class="list-group-item list-group-item-action"
-        routerLink="/"
-        [queryParams]="{category: c.id}" 
-        [class.active] = "category === c.id"
-        *ngFor="let c of categories$ | async" >
-
-        {{c.name}}
-
-      </a>
-    </div>
+    <app-product-filter [category]="category"> </app-product-filter>
+    <!-- [category]="category" means send this class category to product filter
+    component's category -->
   </div>
   <!-- end of category Side-->
 

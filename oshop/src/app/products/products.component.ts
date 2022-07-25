@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { map, Observable, switchMap } from 'rxjs';
-import { CategoryService } from '../service/category.service';
+import { switchMap } from 'rxjs';
 import { ProductService } from '../service/product.service';
 
 @Component({
@@ -13,14 +12,14 @@ export class ProductsComponent implements OnInit {
 
   products : any[] = [];
   filteredProducts: any[] = [];
-  categories$ : Observable<any>;
+  
   
   category: any;
 
   constructor(
     private productService: ProductService , 
-    private route: ActivatedRoute, // for read route parameteres
-    private categoryService: CategoryService ) {
+    private route: ActivatedRoute // for read route parameteres
+    ) {
     
     productService.getAll().pipe(
       switchMap(prod => {
@@ -42,36 +41,6 @@ export class ProductsComponent implements OnInit {
     });
     
     
-    
-    
-    
-    
-    /*
-    
-    .subscribe(prod => {
-      this.products = prod;
-
-      //TEST SART
-      route.queryParamMap.subscribe(params=>{
-        this.category = params.get('category');
-      
-        
-        //apply filter
-        this.filteredProducts = (this.category) ? // if this have a category
-          this.products.filter(p => p.category === this.category) : //otherwise
-          this.products;
-          
-        
-      });
-
-      //TEST END
-    });
-
-    */
-
-
-
-    this.categories$ = categoryService.getCategories().valueChanges();
 
     
     
