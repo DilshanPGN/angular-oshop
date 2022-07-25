@@ -35,6 +35,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { ProductFilterComponent } from './products/product-filter/product-filter.component';
 import { ProductCardComponent } from './product-card/product-card.component';
+import { ShoppingCartService } from './service/shopping-cart.service';
 
 @NgModule({
   declarations: [
@@ -94,7 +95,7 @@ import { ProductCardComponent } from './product-card/product-card.component';
     BrowserAnimationsModule
     
   ],
-  providers: [AuthService, AuthGuard , UserService , AdminAuthGuard , CategoryService , ProductService],
+  providers: [AuthService, AuthGuard , UserService , AdminAuthGuard , CategoryService , ProductService , ShoppingCartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

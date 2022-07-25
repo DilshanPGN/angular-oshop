@@ -17,6 +17,14 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "ng2-validation",
+              "babel-runtime/helpers/createClass",
+              "babel-runtime/core-js/get-iterator",
+              "babel-runtime/helpers/extends",
+              "babel-runtime/helpers/extends",
+              "babel-runtime/helpers/slicedToArray"
+            ],
             "outputPath": "dist/oshop",
             "index": "src/index.html",
             "main": "src/main.ts",
