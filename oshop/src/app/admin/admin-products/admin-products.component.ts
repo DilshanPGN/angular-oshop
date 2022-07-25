@@ -5,11 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { ProductService } from 'src/app/service/product.service';
 
-export interface PeriodicElement {
-  price: string;
-  title: number;
-  edit: number;
-}
+
 
 
 @Component({

@@ -1,12 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { map } from 'rxjs';
-export interface ProdInterface {
-  key: string;
-  title: string;
-  price: number;
-  imageUrl: string;
-}
+import { Product } from '../models/product';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +11,7 @@ export interface ProdInterface {
 
 export class ProductService {
 
-  prodArray : ProdInterface[] =[];
+  prodArray : Product[] =[];
 
   constructor(private db: AngularFireDatabase) { }
 
@@ -49,13 +44,15 @@ export class ProductService {
         return action.map(a=>{
 
           const key = a.payload.key;
-          const val= a.payload.val() as ProdInterface;
+          const val= a.payload.val() as Product;
   
           return {
-            key,
+            key : key,
             title: val.title ,
             price: val.price , 
-            ImageUrl: val.imageUrl
+            category: val.category,
+            
+            imageUrl: val.imageUrl
           };
       });
 

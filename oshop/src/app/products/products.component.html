@@ -1,1 +1,51 @@
-<p>products works!</p>
+<div class="row">
+
+  <!-- Category Side-->
+  <div class="col-3">
+    <app-product-filter [category]="category"> </app-product-filter>
+    <!-- [category]="category" means send this class category to product filter
+    component's category -->
+  </div>
+  <!-- end of category Side-->
+
+
+  <!-- Productside -->
+  <div class="col">
+
+    <div class="row">
+      <ng-container *ngFor="let p of filteredProducts  ; let i = index">
+        <div class="col">
+
+          <!-- Card Here-->
+          <product-card [product]="p"></product-card>
+          <!-- End of card -->
+
+        </div>
+        <div *ngIf="(i+1)%2===0" class="w-100"></div>
+      </ng-container>
+    </div>
+  </div>
+  <!-- End of product side-->
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
