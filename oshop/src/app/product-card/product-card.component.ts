@@ -14,9 +14,13 @@ export class ProductCardComponent{
   @Input('shopping-cart')shoppingCart: any;
   constructor(private cartService: ShoppingCartService) { }
 
-  addToCart(product : any){
+  addToCart(){
    // this.addToCart(product);
-   this.cartService.addToCart(product);;
+   this.cartService.addToCart(this.product);
+  }
+
+  removeFromCart(){
+    this.cartService.removeFromCart(this.product);
   }
 
   getQuantity(){

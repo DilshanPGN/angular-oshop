@@ -57,23 +57,22 @@ export class ShoppingCartService {
 
 
   async addToCart(product : any){
+    this.updateItemQuantity(product , 1);
+  }
 
+  async removeFromCart(product : any){
+    this.updateItemQuantity(product , -1);
+  }
+
+
+  private async updateItemQuantity(product : any , change: number){
     let cartId = await this.getOrCreateCartId();
-    //awaits for getting cart number as async
-
     let item$ = this.getItem(cartId , product.key);
-//this.db.object('/shopping-carts/' + cartId + '/items/' + product.key);
-
-    item$.valueChanges().pipe(take(1))  //take(1) means get one time only..so we no need to implement unsubscribe
+    item$.valueChanges().pipe(take(1))
       .subscribe((item : any )=> {
-
         if(item){
-          //if item already exists in the cart 
-          item$.update({quantity: item.quantity + 1});
-
+          item$.update({quantity: item.quantity + change});
         }else{
-          //if item not exists in cart
-          //create new product in items (whole product)
           item$.set({ product : product , quantity :1 });
         }
       });
