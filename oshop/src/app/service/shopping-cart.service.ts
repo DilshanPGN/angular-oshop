@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { Observable, take } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShoppingCartService {
+
 
   constructor(private db: AngularFireDatabase) { }
 
@@ -19,7 +21,7 @@ export class ShoppingCartService {
   }
 
 
-  private async getOrCreateCart(){
+  private async getOrCreateCartId(){
 
   
     let cartId = localStorage.getItem('cartId');
@@ -40,13 +42,35 @@ export class ShoppingCartService {
 
     /* Method 2 - using async awaits for make sync methods to async */
     
-    if(!cartId || cartId===''){
-      let result = await this.create();
-      localStorage.setItem('cartId', result.key || '');
-      return this.getCart(result.key || '');
-    }
+    if(cartId)return cartId;
     
-    //else
-    return this.getCart(cartId);
+    let result = await this.create();
+    localStorage.setItem('cartId', result.key || '');
+    return result.key;      
+
+  }
+
+
+  async addToCart(product : any){
+
+    let cartId = await this.getOrCreateCartId();
+    //awaits for getting cart number as async
+
+    let item$ = this.db.object('/shopping-carts/' + cartId + '/items/' + product.key);
+
+
+    item$.valueChanges().pipe(take(1))  //take(1) means get one time only..so we no need to implement unsubscribe
+      .subscribe((item : any )=> {
+
+        if(item){
+          //if item already exists in the cart 
+          item$.update({quantity: item.quantity + 1});
+
+        }else{
+          //if item not exists in cart
+          //create new product in items (whole product)
+          item$.set( { product : product , quantity :1 });
+        }
+      });
   }
 }
