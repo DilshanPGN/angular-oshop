@@ -16,12 +16,16 @@ export class ShoppingCartService {
     });
   }
 
+  private getItem(cartId: any, productId: string){
+    return this.db.object('/shopping-carts/' + cartId + '/items/' + productId);
+  }
+
   private getCart(cartId : string){
     return this.db.object('/shopping-carts/' + cartId);
   }
 
 
-  private async getOrCreateCartId(){
+  private async getOrCreateCartId(){ 
 
   
     let cartId = localStorage.getItem('cartId');
@@ -56,8 +60,8 @@ export class ShoppingCartService {
     let cartId = await this.getOrCreateCartId();
     //awaits for getting cart number as async
 
-    let item$ = this.db.object('/shopping-carts/' + cartId + '/items/' + product.key);
-
+    let item$ = this.getItem(cartId , product.key);
+//this.db.object('/shopping-carts/' + cartId + '/items/' + product.key);
 
     item$.valueChanges().pipe(take(1))  //take(1) means get one time only..so we no need to implement unsubscribe
       .subscribe((item : any )=> {
@@ -69,7 +73,7 @@ export class ShoppingCartService {
         }else{
           //if item not exists in cart
           //create new product in items (whole product)
-          item$.set( { product : product , quantity :1 });
+          item$.set({ product : product , quantity :1 });
         }
       });
   }
