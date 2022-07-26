@@ -14,7 +14,6 @@ export class ProductCardComponent{
   @Input('shopping-cart')shoppingCart: any;
   constructor(private cartService: ShoppingCartService) { }
 
-
   addToCart(product : any){
    // this.addToCart(product);
    this.cartService.addToCart(product);;
@@ -26,15 +25,9 @@ export class ProductCardComponent{
     //be tiny delay.during that time shopping card going to be null
 
     if(!this.shoppingCart) return 0; // handle null event
-
     let item = this.shoppingCart.items[this.product.key]; 
     // shopping-cart => items node eke api click karapu item eke
     //id ekata alapena item eka gannawa
     return item ? item.quantity : 0;
-
   }
-
-
-
-
 }
