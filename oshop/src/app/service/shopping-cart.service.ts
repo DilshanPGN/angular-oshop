@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireObject } from '@angular/fire/compat/database';
-import { Observable, take } from 'rxjs';
+import { map, Observable, take } from 'rxjs';
 import { ShoppingCart } from '../models/shopping-cart';
 
 @Injectable({
@@ -21,9 +21,13 @@ export class ShoppingCartService {
     return this.db.object('/shopping-carts/' + cartId + '/items/' + productId);
   }
 
-  async getCart() : Promise<AngularFireObject<ShoppingCart>>{
+  async getCart() : Promise<Observable<ShoppingCart>>{
     let cartId = await this.getOrCreateCartId();
-    return this.db.object('/shopping-carts/' + cartId);
+    return this.db.object('/shopping-carts/' + cartId).valueChanges()
+    .pipe(map((x:any)  => new ShoppingCart(x.items)));
+
+    //returning x is not a shopping cart object. But we need Shooping card object to return from this method. So we have
+    //to map that x to shopping card object
   }
 
 
