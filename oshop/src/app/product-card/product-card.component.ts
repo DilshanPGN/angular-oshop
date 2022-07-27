@@ -29,8 +29,8 @@ export class ProductCardComponent{
     //be tiny delay.during that time shopping card going to be null
 
     if(!this.shoppingCart) return 0; // handle null event
-    let item = this.shoppingCart.items[this.product.key]; 
-    // shopping-cart => items node eke api click karapu item eke
+    let item = this.shoppingCart.itemsMap[this.product.key]; 
+    // shopping-cart => itemsMap node eke api click karapu item eke
     //id ekata alapena item eka gannawa
     return item ? item.quantity : 0;
   }
