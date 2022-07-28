@@ -1,3 +1,4 @@
+import { Product } from "./product";
 import { ShoppingCartItem } from "./shopping-cart-item";
 
 export class ShoppingCart{
@@ -36,5 +37,14 @@ export class ShoppingCart{
       }
 
       return sum;
+    }
+
+
+    getQuantityOfProduct(product : Product){
+
+      let item = this.itemsMap[product.key]; 
+      // shopping-cart => itemsMap node eke api click karapu item eke
+      //id ekata alapena item eka gannawa
+      return item ? item.quantity : 0;
     }
 }
