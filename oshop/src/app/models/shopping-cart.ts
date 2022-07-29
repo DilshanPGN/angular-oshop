@@ -41,7 +41,7 @@ export class ShoppingCart{
 
 
     getQuantityOfProduct(product : Product){
-
+      
       let item = this.itemsMap[product.key]; 
       // shopping-cart => itemsMap node eke api click karapu item eke
       //id ekata alapena item eka gannawa
