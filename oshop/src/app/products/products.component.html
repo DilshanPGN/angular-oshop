@@ -12,12 +12,12 @@
   <!-- Productside -->
   <div class="col">
 
-    <div class="row">
+    <div class="row" *ngIf="cart$ |async as cart">
       <ng-container *ngFor="let p of filteredProducts  ; let i = index">
         <div class="col">
 
           <!-- Card Here-->
-          <product-card [product]="p" [shopping-cart]="cart"></product-card>
+          <product-card [product]="p" [shopping-cart]="cart "></product-card>
           <!-- End of card -->
 
         </div>
