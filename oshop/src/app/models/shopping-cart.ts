@@ -7,10 +7,19 @@ export class ShoppingCart{
 
     constructor(public itemsMap:{ [productId: string]: ShoppingCartItem } ){
 
+      this.itemsMap = itemsMap || {};
+
       for(let productId in itemsMap){
 
         let item = itemsMap[productId];
-        this.items.push(new ShoppingCartItem(item.product , item.quantity));
+
+        let x = new ShoppingCartItem();
+        x.key = productId;
+        
+        Object.assign(x , item); //copy all the propertise that we get from this object from firebase
+        // into this object
+
+        this.items.push(x);
       }
     }
 
@@ -42,9 +51,12 @@ export class ShoppingCart{
 
     getQuantityOfProduct(product : Product){
       
+
+      
       let item = this.itemsMap[product.key]; 
       // shopping-cart => itemsMap node eke api click karapu item eke
       //id ekata alapena item eka gannawa
+      
       return item ? item.quantity : 0;
     }
 }
