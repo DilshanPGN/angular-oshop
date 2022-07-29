@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-sm navbar-light bg-light" aria-label="Third navbar example">
     <div class="container-fluid">
-      <a class="navbar-brand" routerLink="/">Navbar</a>
+      <a class="navbar-brand" routerLink="/">Home</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -10,7 +10,12 @@
           
 
           <li class="nav-item">
-            <a class="nav-link" routerLink="/shopping-cart">Shopping Cart</a>
+            <a class="nav-link" routerLink="/shopping-cart">
+              Shopping Cart 
+              <span class="badge bg-warning rounded-pill" *ngIf="cart$ | async as cart">
+                {{cart.totalItemsCount}}
+              </span>
+            </a>
           </li>
 
           
