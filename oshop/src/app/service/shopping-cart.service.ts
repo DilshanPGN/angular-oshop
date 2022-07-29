@@ -83,7 +83,12 @@ export class ShoppingCartService {
     item$.valueChanges().pipe(take(1))
       .subscribe((item : any )=> {
         if(item){
-          item$.update({quantity: item.quantity + change});
+
+          let quantity = item.quantity + change;
+          if(quantity===0) item$.remove();
+          else item$.update({quantity:quantity});
+         
+          
         }else{
           item$.set({
 
