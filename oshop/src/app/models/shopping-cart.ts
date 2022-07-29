@@ -12,14 +12,10 @@ export class ShoppingCart{
       for(let productId in itemsMap){
 
         let item = itemsMap[productId];
-
-        let x = new ShoppingCartItem();
-        x.key = productId;
-        
-        Object.assign(x , item); //copy all the propertise that we get from this object from firebase
-        // into this object
-
-        this.items.push(x);
+        this.items.push(new ShoppingCartItem({
+           ...item, //send all the properties of an item
+           key: productId
+          }));
       }
     }
 
