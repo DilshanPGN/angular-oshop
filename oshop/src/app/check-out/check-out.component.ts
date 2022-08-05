@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { Order } from '../models/order';
 import { ShoppingCart } from '../models/shopping-cart';
 import { AuthService } from '../service/auth.service';
 import { OrderService } from '../service/order.service';
@@ -35,23 +36,7 @@ export class CheckOutComponent  implements OnInit , OnDestroy{
   }
   
   placeOrder() {
-    let order = {
-      userId : this.userId,
-      datePlaced : new Date().getDate(),
-      shipping : this.shipping,
-      items : this.cart.items.map(i=>{
-        return {
-          products: {
-            title : i.title,
-            imageUrl : i.imageUrl,
-            price : i.price
-          },
-          quntity: i.quantity,
-          totalPrice: i.totalPrice
-        }
-      })  //store as items array
-
-    }
+    let order = new Order(this.userId , this.shipping , this.cart)
 
     this.orderService.storeOrder(order);
   }    
