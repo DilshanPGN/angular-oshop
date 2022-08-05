@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Order } from '../models/order';
 import { ShoppingCart } from '../models/shopping-cart';
@@ -19,6 +20,7 @@ export class CheckOutComponent  implements OnInit , OnDestroy{
   userId!: string|undefined;
 
   constructor(
+    private router : Router,
     private shoppingCartServices : ShoppingCartService , 
     private orderService : OrderService,
     private authService : AuthService
@@ -32,12 +34,13 @@ export class CheckOutComponent  implements OnInit , OnDestroy{
     
   }
   ngOnDestroy(): void {
-    throw new Error('Method not implemented.');
   }
   
-  placeOrder() {
+  async placeOrder() {
     let order = new Order(this.userId , this.shipping , this.cart)
 
-    this.orderService.storeOrder(order);
+    let result = await this.orderService.storeOrder(order);
+
+    this.router.navigate(['/order-success', result.key])
   }    
 }
