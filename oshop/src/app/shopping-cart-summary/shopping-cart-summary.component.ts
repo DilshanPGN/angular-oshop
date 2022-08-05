@@ -10,8 +10,6 @@ export class ShoppingCartSummaryComponent {
 
   @Input('cart') cart!: ShoppingCart;
 
-  totalItemsCount(): number{
-    return this.cart.totalItemsCount;
-  }
+ 
 
 }
