@@ -37,6 +37,9 @@ import { ProductFilterComponent } from './products/product-filter/product-filter
 import { ProductCardComponent } from './product-card/product-card.component';
 import { ShoppingCartService } from './service/shopping-cart.service';
 import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
+import { OrderService } from './service/order.service';
+import { ShoppingCartSummaryComponent } from './shopping-cart-summary/shopping-cart-summary.component';
+import { ShippingFormComponent } from './shipping-form/shipping-form.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +57,9 @@ import { ProductQuantityComponent } from './product-quantity/product-quantity.co
     ProductFormComponent,
     ProductFilterComponent,
     ProductCardComponent,
-    ProductQuantityComponent
+    ProductQuantityComponent,
+    ShoppingCartSummaryComponent,
+    ShippingFormComponent
   ],
   imports: [
     BrowserModule,
@@ -85,7 +90,7 @@ import { ProductQuantityComponent } from './product-quantity/product-quantity.co
       //  /admin/products/
 
       {path: 'check-out' , component: CheckOutComponent , canActivate:[AuthGuard]},
-      {path: 'order-success' , component: OrderSuccessComponent, canActivate:[AuthGuard]},
+      {path: 'order-success/:id' , component: OrderSuccessComponent, canActivate:[AuthGuard]},
       {path: 'my/orders' , component: MyOrdersComponent, canActivate:[AuthGuard]},
 
       {path: 'admin/products/new' , component: ProductFormComponent, canActivate:[AuthGuard , AdminAuthGuard]},
@@ -97,7 +102,7 @@ import { ProductQuantityComponent } from './product-quantity/product-quantity.co
     BrowserAnimationsModule
     
   ],
-  providers: [AuthService, AuthGuard , UserService , AdminAuthGuard , CategoryService , ProductService , ShoppingCartService],
+  providers: [AuthService, AuthGuard , UserService , AdminAuthGuard , CategoryService , ProductService , ShoppingCartService , OrderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
