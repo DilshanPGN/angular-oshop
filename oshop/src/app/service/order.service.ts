@@ -17,4 +17,17 @@ export class OrderService {
     //return bcoz we need to get key of this new order and 
     //redercrt to orer successful page
   }
+
+  //New 
+  
+  getOrders() { 
+    return this.db.list('/orders').valueChanges();
+  }
+
+
+  getOrdersByUser(userId: string) {
+    return this.db.list('/orders', 
+      res => res.orderByChild('userId').equalTo(userId)).valueChanges();
+  }
+  
 }
