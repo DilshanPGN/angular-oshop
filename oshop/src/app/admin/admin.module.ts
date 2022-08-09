@@ -11,6 +11,8 @@ import { AdminAuthGuardService as AdminAuthGuard} from '../shared/services/admin
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTableModule } from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
+import { MatSortModule } from '@angular/material/sort';
 
 
 
@@ -26,6 +28,8 @@ import { MatTableModule } from '@angular/material/table';
     MatPaginatorModule,
     MatFormFieldModule,
     MatTableModule,
+    MatInputModule,
+    MatSortModule,
     
     CommonModule,
     FormsModule,
