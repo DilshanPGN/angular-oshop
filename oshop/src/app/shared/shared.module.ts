@@ -25,11 +25,9 @@ import { UserService } from './services/user.service';
   ],
   imports: [
     CommonModule,
-    
     //common
     FormsModule,
     CustomFormsModule,
-
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     NgbModule,
@@ -43,7 +41,6 @@ import { UserService } from './services/user.service';
     CommonModule,
     FormsModule,
     CustomFormsModule,
-
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     NgbModule
