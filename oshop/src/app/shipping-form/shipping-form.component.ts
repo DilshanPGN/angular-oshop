@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Order } from '../shared/models/order';
 import { ShoppingCart } from '../shared/models/shopping-cart';
-import { AuthService } from '../services/auth.service';
-import { OrderService } from '../services/order.service';
+import { AuthService } from '../shared/services/auth.service';
+import { OrderService } from '../shared/services/order.service';
 
 @Component({
   selector: 'shipping-form',

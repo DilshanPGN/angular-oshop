@@ -19,12 +19,12 @@ import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.componen
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { AuthService } from './services/auth.service';
-import { AuthGuardService as AuthGuard } from './services/auth-guard.service';
+import { AuthService } from './shared/services/auth.service';
+import { AuthGuardService as AuthGuard } from './shared/services/auth-guard.service';
 import { UserService } from './shared/services/user.service';
-import { AdminAuthGuardService as AdminAuthGuard } from './services/admin-auth-guard.service';
+import { AdminAuthGuardService as AdminAuthGuard } from './shared/services/admin-auth-guard.service';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
-import { CategoryService } from './services/category.service';
+import { CategoryService } from './shared/services/category.service';
 import { FormsModule } from '@angular/forms';
 import { ProductService } from './shared/services/product.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -37,7 +37,7 @@ import { ProductFilterComponent } from './products/product-filter/product-filter
 import { ProductCardComponent } from './shared/components/product-card/product-card.component';
 import { ShoppingCartService } from './shared/services/shopping-cart.service';
 import { ProductQuantityComponent } from './shared/components/product-quantity/product-quantity.component';
-import { OrderService } from './services/order.service';
+import { OrderService } from './shared/services/order.service';
 import { ShoppingCartSummaryComponent } from './shopping-cart-summary/shopping-cart-summary.component';
 import { ShippingFormComponent } from './shipping-form/shipping-form.component';
 

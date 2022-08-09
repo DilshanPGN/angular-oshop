@@ -3,8 +3,8 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import {GoogleAuthProvider} from '@angular/fire/auth';
 import { map, Observable, switchMap } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
-import { AppUser } from '../shared/models/app-user';
-import { UserService } from '../shared/services/user.service';
+import { AppUser } from '../models/app-user';
+import { UserService } from './user.service';
 
 
 @Injectable({
