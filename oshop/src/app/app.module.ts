@@ -17,6 +17,7 @@ import { environment } from 'src/environments/environment';
 
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
 import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
+import { AdminModule } from './admin/admin.module';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -45,10 +46,7 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
     CheckOutComponent,
     OrderSuccessComponent,
     MyOrdersComponent,
-    AdminProductsComponent,
-    AdminOrdersComponent,
     LoginComponent,
-    ProductFormComponent,
     ProductFilterComponent,
     ShoppingCartSummaryComponent,
     ShippingFormComponent
@@ -58,18 +56,18 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
     //custom
     SharedModule,
+    AdminModule,
 
-    MatTableModule,
+    
 
     //testing
+    MatTableModule,
     MatFormFieldModule,
     MatInputModule,
-    
-    
-
-
     MatSortModule,
     MatPaginatorModule,
+
+
     FormsModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase ),
@@ -98,7 +96,6 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
     BrowserAnimationsModule
     
   ],
-  providers: [AdminAuthGuard ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
