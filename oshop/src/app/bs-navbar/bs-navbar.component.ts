@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { AppUser } from '../shared/models/app-user';
 import { ShoppingCart } from '../shared/models/shopping-cart';
 import { AuthService } from '../services/auth.service';
-import { ShoppingCartService } from '../services/shopping-cart.service';
+import { ShoppingCartService } from '../shared/services/shopping-cart.service';
 
 
 
