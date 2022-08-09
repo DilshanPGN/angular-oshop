@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
-import { ProductService } from 'src/app/service/product.service';
+import { ProductService } from 'src/app/shared/services/product.service';
 
 
 

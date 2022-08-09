@@ -1,58 +1,77 @@
 <nav class="navbar navbar-expand-sm navbar-light bg-light" aria-label="Third navbar example">
-    <div class="container-fluid">
-      <a class="navbar-brand" routerLink="/">Home</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-  
-      <div class="collapse navbar-collapse" id="navbarsExample03">
-        <ul class="navbar-nav me-auto mb-2 mb-sm-0">
-          
+    <div class="container">
+     
+      <div class="container-fluid">
 
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/shopping-cart">
-              Shopping Cart 
-              <span class="badge bg-warning rounded-pill" *ngIf="cart$ | async as cart">
-                {{cart.totalItemsCount}}
-              </span>
-            </a>
-          </li>
+        
+    
+         
+        <div class="collapse navbar-collapse" id="navbarsExample03">
+          <!-- Home Button -->
+          <a class="navbar-brand" routerLink="/">
+            <i class="bi bi-house-fill " ></i>
+          </a>
+          <!-- End of Home Button -->
 
-          
-          
-          <!-- ng-template only visible whe-->
-          <ng-template #anonymousUser>
+          <!-- IDK -->
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <!-- End of IDK -->
+
+          <!-- Left side of the navbar-->
+          <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+            
             <li class="nav-item">
-              <a class="nav-link" routerLink="/login" *ngIf="!(auth.user$ | async)">Log in</a>
+              <a class="nav-link" routerLink="/shopping-cart">
+                <i class="bi bi-cart-fill"   ></i>
+                <span class="badge bg-warning rounded-pill" *ngIf="cart$ | async as cart">
+                  {{cart.totalItemsCount}}
+                </span>
+              </a>
             </li>
-          </ng-template>
+  
+          </ul>
 
-          
-          <!-- below part works like if there is a user. (user$ is a observable. we can unwarap it using
-            async. if there is no user then visible ng-template with #anonymouse variable and remove name )
-            )-->
-          <li ngbDropdown class="nav-item dropdown" *ngIf="appUser; else anonymousUser">
-            <a ngbDropdownToggle class="nav-link dropdown-toggle" id="dropdown03" data-bs-toggle="dropdown" aria-expanded="false">
-              {{appUser.name}}  <!--'user' comming from unwrapping user$ observable-->
-            </a>
-           
-           <!--Dropdown Items-->
-            <ul ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown03">
-              <li><a class="dropdown-item" routerLink="/my/orders">My Orders</a></li>
 
-              <ng-container *ngIf="appUser.isAdmin">
-                <li><a class="dropdown-item" routerLink="/admin/orders">Manage Orders</a></li>
-                <li><a class="dropdown-item" routerLink="/admin/products">Manage Products</a></li>     
-              </ng-container>   
+          <!-- Right side of the navbar-->
+          <ul class="navbar-nav mb-2 mb-sm-0">
 
-              <li><a class="dropdown-item" (click)="logout()">Log out</a></li>
-            </ul>
-          </li>
-        </ul>
-        <form> 
-          <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-        </form>
+            <!-- ng-template only visible whe-->
+            <ng-template #anonymousUser>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/login" *ngIf="!(auth.user$ | async)">Log in</a>
+              </li>
+            </ng-template>
+  
+            
+            <!-- below part works like if there is a user. (user$ is a observable. we can unwarap it using
+              async. if there is no user then visible ng-template with #anonymouse variable and remove name )
+              )-->
+            <li ngbDropdown class="nav-item dropdown" *ngIf="appUser; else anonymousUser">
+              <a ngbDropdownToggle class="nav-link dropdown-toggle" id="dropdown03" data-bs-toggle="dropdown" aria-expanded="false">
+                {{appUser.name}}  <!--'user' comming from unwrapping user$ observable-->
+              </a>
+             
+             <!--Dropdown Items-->
+              <ul ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown03">
+                <li><a class="dropdown-item" routerLink="/my/orders">My Orders</a></li>
+  
+                <ng-container *ngIf="appUser.isAdmin">
+                  <li><a class="dropdown-item" routerLink="/admin/orders">Manage Orders</a></li>
+                  <li><a class="dropdown-item" routerLink="/admin/products">Manage Products</a></li>     
+                </ng-container>   
+  
+                <li><a class="dropdown-item" (click)="logout()">Log out</a></li>
+              </ul>
+            </li>
+          </ul>
+
+        </div>
+
+
       </div>
     </div>
+    
   </nav>
   
