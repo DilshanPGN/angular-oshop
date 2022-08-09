@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Order } from '../models/order';
-import { ShoppingCart } from '../models/shopping-cart';
+import { Order } from '../shared/models/order';
+import { ShoppingCart } from '../shared/models/shopping-cart';
 import { AuthService } from '../services/auth.service';
 import { OrderService } from '../services/order.service';
 
