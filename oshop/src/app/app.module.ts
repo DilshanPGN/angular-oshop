@@ -19,8 +19,9 @@ import { AdminModule } from './admin/admin.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './core/components/home/home.component';
+import { LoginComponent } from './core/components/login/login.component';
+import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { ProductsComponent } from './shopping/products/products.component';
 import { ShoppingModule } from './shopping/shopping.module';
@@ -29,8 +30,7 @@ import { ShoppingModule } from './shopping/shopping.module';
   declarations: [
     AppComponent,
     BsNavbarComponent,
-    HomeComponent,
-    LoginComponent,
+    
     
   ],
   imports: [
@@ -40,6 +40,7 @@ import { ShoppingModule } from './shopping/shopping.module';
     SharedModule,
     AdminModule,
     ShoppingModule,
+    CoreModule,
 
     //testing
     MatTableModule,
@@ -56,7 +57,8 @@ import { ShoppingModule } from './shopping/shopping.module';
     RouterModule.forRoot([
       {path: '' , component: ProductsComponent},
       {path: 'login' , component: LoginComponent},
-     ]),
+     
+    ]),
     NgbModule,
     BrowserAnimationsModule
     
