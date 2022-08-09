@@ -1,5 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { FormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CustomFormsModule } from 'ng2-validation';
 
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { ProductQuantityComponent } from './components/product-quantity/product-quantity.component';
@@ -19,12 +24,29 @@ import { UserService } from './services/user.service';
     ProductQuantityComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    
+    //common
+    FormsModule,
+    CustomFormsModule,
+
+    AngularFireAuthModule,
+    AngularFireDatabaseModule,
+    NgbModule,
   ],
   //export to use coponents outside this modules
   exports:[
     ProductCardComponent,
-    ProductQuantityComponent
+    ProductQuantityComponent,
+
+    //common
+    CommonModule,
+    FormsModule,
+    CustomFormsModule,
+
+    AngularFireAuthModule,
+    AngularFireDatabaseModule,
+    NgbModule
   ],
   providers: [AuthService, AuthGuard , UserService  , CategoryService , ProductService , ShoppingCartService , OrderService],
 })

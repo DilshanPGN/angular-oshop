@@ -31,8 +31,7 @@ import { MatSortModule } from '@angular/material/sort';
     MatInputModule,
     MatSortModule,
     
-    CommonModule,
-    FormsModule,
+    
     SharedModule,
     RouterModule.forChild([
 
